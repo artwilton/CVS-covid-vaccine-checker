@@ -228,12 +228,13 @@ def findAVaccine():
         for key in mappings.keys():
             if (key in cities) and (mappings[key] != 'Fully Booked'):
                 beepy.beep(sound = 'coin')
+                print('\nAVAILABLE CITY IS: ' + key)
                 break
             else:
                 pass
 
         time.sleep(60) ##This runs every 60 seconds. Update here if you'd like it to go every 10min (600sec)
-        print('\n -------------- RUNNING SCRIPT AGAIN --------------')
+        print('\n-------------- RUNNING SCRIPT AGAIN --------------')
 
 findAVaccine() ###this final line runs the function. Your terminal will output the cities every 60seconds
 
