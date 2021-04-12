@@ -18,6 +18,7 @@ import beepy
 def findAVaccine():
     hours_to_run = 3 ###Update this to set the number of hours you want the script to run.
     max_time = time.time() + hours_to_run*60*60
+
     while time.time() < max_time:
 
         state = 'NJ' ###Update with your state abbreviation. Be sure to use all CAPS, e.g. RI
@@ -225,15 +226,20 @@ def findAVaccine():
             if (mappings[key] != 'Fully Booked'):
                 available_cities.append(key)
 
+        ## Remove any cities from available_cities list if there are any uncommented filtered_cities
         if (len(filtered_cities) and len(available_cities)) !=0:
             available_cities = [x for x in filtered_cities if x in available_cities]
-            beepy.beep(sound = 'coin')
-            print('AVAILABLE CITIES ARE:', available_cities)
-        elif len(available_cities) != 0:
-            beepy.beep(sound = 'coin')
-            print('AVAILABLE CITIES ARE:', ', '.join(available_cities))
-        else:
-            print ('\nNO AVAILABLE APPOINTMENTS, TRYING AGAIN...\n')
+
+        ## Print which cities are available, if any
+        def print_available_cities(cities):
+            if len(cities) !=0:
+                message = 'AVAILABLE CITIES ARE: %s' % ', '.join(cities)
+                beepy.beep(sound = 'coin')
+            else:
+                message = '\nNO AVAILABLE APPOINTMENTS, TRYING AGAIN...\n'
+            print(message)
+
+        print_available_cities(available_cities)
 
         time.sleep(60) ##This runs every 60 seconds. Update here if you'd like it to go every 10min (600sec)
 
