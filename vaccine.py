@@ -231,7 +231,7 @@ def findAVaccine():
             print('AVAILABLE CITIES ARE:', available_cities)
         elif len(available_cities) != 0:
             beepy.beep(sound = 'coin')
-            print('AVAILABLE CITIES ARE:', available_cities)
+            print('AVAILABLE CITIES ARE:', ', '.join(available_cities))
         else:
             print ('\nNO AVAILABLE APPOINTMENTS, TRYING AGAIN...\n')
 
